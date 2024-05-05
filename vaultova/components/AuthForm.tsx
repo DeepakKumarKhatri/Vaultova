@@ -30,30 +30,24 @@ const AuthForm = ({ type }: AuthFormProps) => {
 
   const onSubmit = async (data: z.infer<typeof formSchema>) => {
     try {
-
-      if (type === 'sign-up'){
-        const newUser = await signUp(data);
-        setUser(newUser);
-          
+      if (type === "sign-up") {
+        // const newUser = await signUp(data);
+        // setUser(newUser);
       }
-      if (type === 'sign-in'){
-        const response = await signIn({
-          email: data.email,
-          password: data.password
-        });
-
-        if (response) router.push('/')
-        
-
+      if (type === "sign-in") {
+        // const response = await signIn({
+        //   email: data.email,
+        //   password: data.password
+        // });
+        // if (response) router.push('/')
       }
 
       setIsLoading(true);
       console.log(data);
       setIsLoading(false);
     } catch (error) {
-      console.log(error)
-    }
-    finally {
+      console.log(error);
+    } finally {
       setIsLoading(false);
     }
   };
@@ -70,7 +64,7 @@ const AuthForm = ({ type }: AuthFormProps) => {
           />
 
           <h1 className="text-26 font-ibm-plex-serif font-bold text-black-1">
-            Vaultova
+            VAULTOVA
           </h1>
         </Link>
 
@@ -80,8 +74,8 @@ const AuthForm = ({ type }: AuthFormProps) => {
           </h1>
           <p className="text-16 font-normal text-gray-600">
             {user
-              ? "Link your account to get strarted"
-              : "Please enter your detials"}
+              ? "Link your account to get started"
+              : "Please enter your details"}
           </p>
         </div>
       </header>
@@ -114,11 +108,11 @@ const AuthForm = ({ type }: AuthFormProps) => {
                     placeholder="Enter your Address"
                   />
                   <CustomInput
-                      control={form.control}
-                      name="city"
-                      label="City"
-                      placeholder="Enter your City"
-                    />
+                    control={form.control}
+                    name="city"
+                    label="City"
+                    placeholder="Enter your City"
+                  />
                   <div className="flex gap-4">
                     <CustomInput
                       control={form.control}
@@ -188,8 +182,8 @@ const AuthForm = ({ type }: AuthFormProps) => {
                 : "Already haven an account?"}
             </p>
             <Link
+              href={type === "sign-in" ? "/sign-up" : "/sign-in"}
               className="form-link"
-              href={type === "sign-in" ? "/sign-in" : "/sign-up"}
             >
               {type === "sign-in" ? "Sign Up" : "Sign In"}
             </Link>
